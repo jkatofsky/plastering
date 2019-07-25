@@ -100,6 +100,7 @@ class BuildingAdapterInterface(Inferencer):
             source_buildings=source_buildings,
             target_srcids=target_srcids,
             pgid=pgid,
+            config=config
         )
 
         #gather the source/target data and name features, labels
