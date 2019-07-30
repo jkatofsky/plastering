@@ -29,7 +29,7 @@ def get_name_features(names):
     return fn
 
 
-def get_data_features(building, start_time, end_time, pgid):
+def get_data_features(building, start_time, end_time, pgid, min_seq_len=None):
 
     res = read_from_db(building, start_time, end_time)
 
@@ -50,7 +50,7 @@ def get_data_features(building, start_time, end_time, pgid):
         #computing features on long sequence is really slow now, so only loading a small port of the readings
         try:
             df = data['data'][:3000]
-            if len(df) < 400: #discard short sequences
+            if min_seq_len and len(df) < min_seq_len: #discard short sequences
                 ctr += 1
                 continue
             else:
